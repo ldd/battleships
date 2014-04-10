@@ -281,7 +281,7 @@ this.rotateShip= function(aShip, axis, radians) {
   }
 
   this.setVisibleFromName = function(m){
-    var visible = m.getVisibleSquares('challenger');
+    var visible = m.squares;//m.getVisibleSquares('challenger');
     for (square in visible){
       this.setPlaneVisible(JSON.parse(square), visible[square]);
     }

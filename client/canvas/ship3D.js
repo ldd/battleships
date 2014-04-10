@@ -20,7 +20,7 @@ Ship3D = function Ship3D(){
         for (i=0;i<aShip.shipLength;i++){
 	        	var aCube;
 				if(aShip.id.indexOf('base') != -1){
-			        aCube = new Cube(i*aShip.orientation[0],i*aShip.orientation[1], 15, 25,25);
+			        aCube = new Cube(i*aShip.orientation[0],i*aShip.orientation[1], 25, 25,25);
 			        if (aShip.owner == 'challenger')
 				        aCube.changeColor(0x280000); 
 				    else
