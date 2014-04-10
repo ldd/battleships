@@ -13,7 +13,6 @@ getOldGames = function () {
 getCurrentGame = function () {
     var game =  gameCollection.findOne({_id: Session.get('inGame'), active: true});
     if(game) {
-        game.__proto__ = new Game();
         return game;
     }
     else{
@@ -24,13 +23,7 @@ getCurrentGame = function () {
 
 getCurrentMap = function() {
     var map = Session.get('currentMap');
-    if(map){
-        map.__proto__ = new Map();
-        return map;
-    }
-    else {
-        return undefined;
-    }
+    return map;
 }
 
 clearSessionVars = function() {
@@ -42,3 +35,16 @@ clearSessionVars = function() {
     Session.set('complexGame', null);
     Session.set('showModal', null);
 }
+
+Meteor.call('getGrid', function(err, data){
+    if (!err){
+        Session.set('grid', data);
+    }
+});
+
+    // function getGrid(map, user, callback){
+    //     g.map.__proto__ = new Map();
+    //     map.getGrid(map,user,callback);
+    // };
+    // var wrappedGetGrid = Meteor._wrapAsync(getGrid);
+

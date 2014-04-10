@@ -1,41 +1,32 @@
 Template.grid.helpers({
     rows: function () {
-        var game = getCurrentGame();
-        var map  = getCurrentMap();
-        if (map instanceof Map) {
-            if (game){
-                var player = game.challenger == Meteor.userId()? 'challenger': 'opponent'; 
-                return map.getGrid(player); 
-            }
-            else{
-                return map.getGrid('opponent');
-            }
-        }
+        return Session.get('grid');
     }
 });
 
 Template.grid.rendered = function(){
     var currentGame = getCurrentGame();
     var map = getCurrentMap();
-    if (currentGame != undefined && map != undefined) {
-        var visibleSquares;
+    Meteor.call('getVisibleSquares');
+    // if (currentGame != undefined && map != undefined) {
+    //     var visibleSquares;
 
-        if (Meteor.userId() == currentGame.challenger){
-            visibleSquares = map.getVisibleSquares('challenger');
-        }
+    //     if (Meteor.userId() == currentGame.challenger){
+    //         visibleSquares = map.getVisibleSquares('challenger');
+    //     }
 
-        if (Meteor.userId() == currentGame.opponent){
-            visibleSquares = map.getVisibleSquares('opponent');
-        }
+    //     if (Meteor.userId() == currentGame.opponent){
+    //         visibleSquares = map.getVisibleSquares('opponent');
+    //     }
 
-        keys = Object.keys(visibleSquares);
-        for (var i=0; i < keys.length; i++){
-            keyvar = JSON.parse(keys[i]);
-            var squareVisible = map.squares[keyvar[0]][keyvar[1]];
-            squareVisible = new Square();
-            //squareVisible.visibility = "id=visible";
-        }
-    }
+    //     keys = Object.keys(visibleSquares);
+    //     for (var i=0; i < keys.length; i++){
+    //         keyvar = JSON.parse(keys[i]);
+    //         var squareVisible = map.squares[keyvar[0]][keyvar[1]];
+    //         squareVisible = new Square();
+    //         //squareVisible.visibility = "id=visible";
+    //     }
+    // }
 }
 
 Template.grid.events({

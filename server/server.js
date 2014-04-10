@@ -48,7 +48,8 @@
             //console.log(game);
             console.log(game.turn);
             return game.turn;
-        }
+        },
+ 
 
     });
 
@@ -84,7 +85,7 @@ Meteor.publish('games', function(id) {
     //return gameCollection.find({$or: [{opponent :this.userId}, {challenger: this.userId}]});
 });
 
-// Meteor.publish('savedgames', function(id) {
+// Meteor.publish('squares', function(id) {
 //     //return gameCollection.find({$and: [{$or: [{opponent :this.userId}, {challenger: this.userId}]}, {active : false} ]});
 //    return gameCollection.find({active : false});
 // });

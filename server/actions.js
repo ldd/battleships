@@ -84,6 +84,21 @@ var turn180 = function(map, ship, position) {
     return map;
 }
 
+
+function getUserProfile(req, callback) {
+            var g = gameCollection.findOne();
+            if (g){
+                g.map.__proto__ = new Map();
+                var a = g.map.getGrid('opponent');
+                return a;
+            }
+            else{
+                return undefined;
+            }
+}
+
+var wrappedGetProfile = Meteor._wrapAsync(getUserProfile);
+
 Meteor.methods({
 
     completeTurn: function(action, ship, position){
@@ -196,6 +211,32 @@ useWeapon: function(gameID, ship, weaponType, targetPosition) {
             console.log(game);
             return false;
         }
-           }
+},
+       getGrid: function(){
+            var g = gameCollection.findOne();
+            if (g){
+              var player = (this.userId == g.challenger)? 'challenger': 'opponent';
+              g.map.__proto__ = new Map();
+              var a = g.map.getGrid(player);
+              console.log(a);
+              return a;
+            }
+            else{
+                return undefined;
+            }
+        // if (map instanceof Map) {
+        //     if (game){
+        //         var player = game.challenger == Meteor.userId()? 'challenger': 'opponent'; 
+        //         return map.getGrid(player); 
+        //     }
+        //     else{
+        //         return map.getGrid('opponent');
+        //     }
+        // }
+        },
+        getVisibleSquares: function(){
+            return 'tacos';
+        }
+
 });
 
