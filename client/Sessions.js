@@ -36,15 +36,11 @@ clearSessionVars = function() {
     Session.set('showModal', null);
 }
 
-Meteor.call('getGrid', function(err, data){
-    if (!err){
-        Session.set('grid', data);
-    }
-});
-
-    // function getGrid(map, user, callback){
-    //     g.map.__proto__ = new Map();
-    //     map.getGrid(map,user,callback);
-    // };
-    // var wrappedGetGrid = Meteor._wrapAsync(getGrid);
-
+getSquares = function(){
+    Meteor.call('getGrid', function(err, data){
+        console.log('yo!');
+        if (!err){
+            Session.set('grid', data);
+        }
+    });
+}

@@ -30,6 +30,7 @@ Deps.autorun(function() {
             if (fields.mapAccepted == 13){
                 console.log('a game was loaded!');
                 Session.set('currentMap', fields.map);
+                Session.set('grid', fields.map.squares);
                 Session.set('showModal', false);
                 Session.set('showLoadModal', false);
                 Session.set('inGame',id);
@@ -38,6 +39,7 @@ Deps.autorun(function() {
             else{
                 console.log('a game was inserted!');
                 Session.set('currentMap', fields.map);
+                Session.set('grid', fields.map.squares);
                 Session.set('showModal', true);
                 Session.set('showLoadModal', false);
             }
@@ -55,6 +57,8 @@ Deps.autorun(function() {
             else if(fields.mapsLeft){
                 if (fields.mapsLeft >=1){
                     Session.set('currentMap', fields.map);
+                    Session.set('grid', fields.map.squares);
+
                      $('#acceptMapButton').prop('disabled', false);
                 }
                 else{
@@ -66,6 +70,7 @@ Deps.autorun(function() {
             else{
                 if (getCurrentGame()){
                     Session.set('currentMap', getCurrentGame().map);
+                    Session.set('grid', getCurrentGame().map.squares);
                     Session.set('selectedShip', undefined);
                 }
             }
