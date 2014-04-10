@@ -1,0 +1,9 @@
+<template name="savedGames">
+<div class="list-group">
+    {{#each savedGames}}
+    <a href="#" class="list-group-item previousGameElement" id="{{this._id}}">
+        {{this.name}}
+    </a>
+    {{/each}}
+</div>
+</template>

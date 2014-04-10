@@ -8,25 +8,6 @@ Template.grid.rendered = function(){
     var currentGame = getCurrentGame();
     var map = getCurrentMap();
     Meteor.call('getVisibleSquares');
-    // if (currentGame != undefined && map != undefined) {
-    //     var visibleSquares;
-
-    //     if (Meteor.userId() == currentGame.challenger){
-    //         visibleSquares = map.getVisibleSquares('challenger');
-    //     }
-
-    //     if (Meteor.userId() == currentGame.opponent){
-    //         visibleSquares = map.getVisibleSquares('opponent');
-    //     }
-
-    //     keys = Object.keys(visibleSquares);
-    //     for (var i=0; i < keys.length; i++){
-    //         keyvar = JSON.parse(keys[i]);
-    //         var squareVisible = map.squares[keyvar[0]][keyvar[1]];
-    //         squareVisible = new Square();
-    //         //squareVisible.visibility = "id=visible";
-    //     }
-    // }
 }
 
 Template.grid.events({
@@ -38,17 +19,6 @@ Template.grid.events({
             var position = JSON.parse(evt.target.id);
             console.log("completing action " + action + " with position " + position);
             Meteor.call('completeTurn', action, Session.get('selectedShip'), position);
-
-            //Don't forget to update the ship session variable!
-
-            //delete it
-            //Session.set('selectedShip', undefined); 
-
-            //reset it
-            // var ship = getCurrentMap().shipDictionary[Session.get('selectedShip').shipName];
-            // Session.set('selectedShip', ship); 
-
-
         }
         Session.set('selectedAction', "");
     },
